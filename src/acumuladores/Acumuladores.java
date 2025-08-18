@@ -1,6 +1,22 @@
 package acumuladores;
 
 public class Acumuladores {
+	
+	public static boolean estaVacia(int[][] mat) {
+		return mat.length == 0;
+	}
+	
+	public static boolean esMultiplo(int num1, int num2) {
+		return num1 % num2 == 0;
+	}
+	
+	public static boolean todosMultiplosFila(int[] fila, int num) {
+		boolean todosMultiplos = true;
+		for (int i = 0; i < fila.length; i++) {
+			todosMultiplos = todosMultiplos && esMultiplo(fila[i],num);
+		}
+		return todosMultiplos;
+	}
 
 	/**
 	 * Dada una matriz de enteros y un número, verifica si existe alguna fila 
@@ -14,7 +30,14 @@ public class Acumuladores {
 	 * @return
 	 */
 	public boolean todosMultiplosEnAlgunaFila(int[][] mat, int num) { 
-		throw new RuntimeException("Metodo no implementado aun!!!");
+		if (estaVacia(mat) || num <= 0) {
+			return false;
+		}
+		boolean todosMultiplosAlgunaFila = false;
+		for (int i = 0; i < mat.length; i++) {
+			todosMultiplosAlgunaFila = todosMultiplosAlgunaFila || todosMultiplosFila(mat[i],num);
+		}
+		return todosMultiplosAlgunaFila;
 	}
 	
 	/**
